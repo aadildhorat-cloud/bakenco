@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTPGZ964FD"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-DTPGZ964FD');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bake & Co. | Homemade • Fresh • Indulgent</title>
@@ -1277,7 +1285,7 @@ fetch('slider.html').then(res => res.ok ? res.text() : Promise.reject('slider.ht
   if (typeof Swiper !== 'undefined') {
     new Swiper('.mySwiper', {
       spaceBetween: 0, centeredSlides: true,
-      autoplay: { delay: 3000, disableOnInteraction: false },
+      autoplay: { delay: 1500, disableOnInteraction: false },
       pagination: { el: '.swiper-pagination', clickable: true },
       navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       loop: true, effect: 'fade', fadeEffect: { crossFade: true }
