@@ -13,7 +13,11 @@ gtag('config', 'G-DTPGZ964FD');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bake & Co. | Homemade • Fresh • Indulgent</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<!-- 🔗 Favicon -->
+<link rel="icon" type="image/png" href="images/bakenco-logo.jpg">
+<link rel="apple-touch-icon" href="images/bakenco-logo.jpg">
   
   <style>
     /* === FUTURISTIC HIVE BACKGROUND - BODY ONLY (Bake & Co. Pink Theme) === */
@@ -906,7 +910,12 @@ footer { background: linear-gradient(135deg, #FF6B8A, #C44569) !important; }
   </div>
 </div>
 
-<div id="slider-container"></div>
+<!-- ✅ SLIDER FETCH + INJECT (Paste where <div id="slider-container"></div> was) -->
+<div id="slider-container">
+  <div style="text-align:center; padding:40px; color:#888;">
+    <i class="fas fa-spinner fa-spin"></i> Loading featured businesses...
+  </div>
+</div>
 
 <!-- PRODUCT SECTIONS -->
 <div class="content-section" id="dessert-sushi">
@@ -1280,23 +1289,29 @@ function sendCartToWhatsApp() {
   window.open(url, '_blank');
 }
 
-// === SLIDER ===
-fetch('slider.html').then(res => res.ok ? res.text() : Promise.reject('slider.html not found'))
+ // === SLIDER ===
+fetch('slider.html')
+.then(res => res.ok ? res.text() : Promise.reject('slider.html not found'))
 .then(html => {
-  document.getElementById('slider-container').innerHTML = html;
-  if (typeof Swiper !== 'undefined') {
-    new Swiper('.mySwiper', {
-      spaceBetween: 0, centeredSlides: true,
-      autoplay: { delay: 1500, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true },
-      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-      loop: true, effect: 'fade', fadeEffect: { crossFade: true }
-    });
-  }
-}).catch(err => {
-  console.error('Slider error:', err);
-  document.getElementById('slider-container').innerHTML = `<div style="text-align:center;padding:40px;color:var(--primary);">⚠️ Slider unavailable</div>`;
+    document.getElementById('slider-container').innerHTML = html;
+    if (typeof Swiper !== 'undefined') {
+        new Swiper('.mySwiper', {
+            spaceBetween: 0,
+            centeredSlides: true,
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            loop: true,
+            effect: 'fade',
+            fadeEffect: { crossFade: true }
+        });
+    }
+})
+.catch(err => {
+    console.error('Slider error:', err);
+    document.getElementById('slider-container').innerHTML = `<div style="text-align:center;padding:40px;color:#8B4513;">⚠️ Slider unavailable</div>`;
 });
+
 
 // === AI CHAT WIDGET ===
 document.addEventListener('DOMContentLoaded', () => {
